@@ -11,7 +11,9 @@ The dataset contains information about employees, projects, and the departments 
 ## Tool Used:
 + SQL
 ### Queries
-_Find the names of employees who are currently working on projects in the IT department._
+#### Find the names of employees who are currently working on projects in the IT department.
+
++ Insight: _This helps isolate human resources contributing to IT deliverables in real time, useful for tracking workloads or evaluating ongoing resource allocation._
 ```sql
 select first_name, last_name, p.project_status, p.department
 from employees_details as e
@@ -20,7 +22,9 @@ on e.employee_id = p.employee_id
 where project_status = 'Ongoing'
 and p.department = 'IT';
 ```
-_List the project names and the corresponding start dates for all projects that are currently ongoing._
+#### List the project names and the corresponding start dates for all projects that are currently ongoing.
+
++ Insight: _Offers visibility into active projects and their initiation timelines—valuable for understanding project duration and active workload._
 ```sql
 select distinct p.project_name, start_date, project_status
 from project_details as d
@@ -29,7 +33,9 @@ on d.project_id = p.project_id
 where project_status = 'Ongoing';
 ```
 
-_Retrieve the names and ages of employees who would resign after working for more than 3 years._
+#### Retrieve the names and ages of employees who would resign after working for more than 3 years.
+
++ Insight: _Identifies long-tenure employees who left, which could inform retention analysis or exit interview focus._
 ```sql
 select first_name, last_name, age
 from employees_details
@@ -37,7 +43,9 @@ where date_resigned is not null
 and timestampdiff(year, date_joined, date_resigned) > 3;
 ```
 
-_Find the total salary paid to employees in the 'Finance' department._
+#### Find the total salary paid to employees in the 'Finance' department.
+
++ Insight: _Useful for departmental budget tracking and financial forecasting._
 ```sql
 select department, sum(salary)
 from employees_details
@@ -45,7 +53,9 @@ where department = 'Finance'
 group by department;
 ```
 
-_List the project names and employee names for projects that started in 2024._
+#### List the project names and employee names for projects that started in 2024.
+
++ Insight: _Helps in understanding recent project launches and staffing patterns in the current year._
 ```sql
 select first_name, last_name, project_name,start_date
 from ((project_details as p
@@ -56,14 +66,18 @@ on p.project_id = d.project_id)
 where start_date = 2024;
 ```
 
-_Find the employees who are currently working in the 'Operations' department and have a performance level of 'Exceeds'._
+#### Find the employees who are currently working in the 'Operations' department and have a performance level of 'Exceeds'.
+
++ Insight: _Highlights top performers in a key department, valuable for promotions, bonuses, or leadership grooming._
 ```sql
 select first_name, last_name, department, performance_level
 from employees_details 
 where department = 'Operations' and performance_level = 'Exceeds';
 ```
 
-_Retrieve the names of employees who joined before 2023 and are working on ongoing projects._
+#### Retrieve the names of employees who joined before 2023 and are working on ongoing projects.
+
++ Insight: _Helps assess experience level on ongoing projects—possibly correlating tenure with performance or project continuity._
 ```sql
 select first_name, last_name, date_joined, project_status
 from employees_details as e
@@ -73,7 +87,9 @@ where date_joined < 2023
 and project_status = 'Ongoing';
 ```
 
-_Find the employees who have completed projects and are in either 'Finance' or 'IT' departments._
+#### Find the employees who have completed projects and are in either 'Finance' or 'IT' departments.
+
++ Insight: _Identifies personnel with full project lifecycle experience in strategic departments—useful for reassignment or recognition._
 ```sql
 select first_name, last_name, p.department, project_status
 from employees_details as e
@@ -83,7 +99,9 @@ where (p.department = 'Finance' or p.department ='IT')
 and project_status = 'Completed';
 ```
 
-_Retrieve the names of employees who share the same last name as another employee, along with their respective departments._
+#### Retrieve the names of employees who share the same last name as another employee, along with their respective departments.
+
++ Insight: _While seemingly trivial, this may help identify familial ties or just handle data ambiguity in HR systems._
 ```sql
 select distinct e1.first_name, e1.last_name, e1.department
 from employees_details as e1
@@ -93,8 +111,10 @@ and e1.employee_id != e2.employee_id
 order by e1.last_name, e1.department;
 ```
 
-_Write an SQL query to find the top 3 departments with the highest average salary. Return the department and the 
-average salary, rounded to 2 decimal places._
+#### Write an SQL query to find the top 3 departments with the highest average salary. Return the department and the 
+#### average salary, rounded to 2 decimal places.
+
++ Insight: _Provides a snapshot of compensation hierarchy across departments—can signal high-skill or high-demand areas._
 ```sql
 select department, round(avg(salary), 2) as avg_salary
 from employees_details
@@ -103,8 +123,10 @@ order by avg_salary desc
 limit 3;
 ```
 
-_Write an SQL query to find the project names and the total number of employees who have joined before the
-project start date. Return the project_name and the count of such employees._
+#### Write an SQL query to find the project names and the total number of employees who have joined before the
+#### project start date. Return the project_name and the count of such employees.
+
++ Insight: _Helps assess how many resources were already in place before project initiation—indicative of staffing readiness or onboarding gaps._
 ```sql
 select pd.project_name, count(distinct e.employee_id) as employee_count
 from project_departments as pd
