@@ -139,6 +139,12 @@ group by pd.project_name;
 
 ### Screenshots
 
+<img width="369" height="351" alt="Screenshot 2025-08-04 214710" src="https://github.com/user-attachments/assets/7d023e62-5888-46f4-934a-39c954257ba8" />
+
+<img width="369" height="337" alt="Screenshot 2025-08-04 214754" src="https://github.com/user-attachments/assets/91e7ba07-91c8-4a4c-bd94-680c5e92a334" />
+
+<img width="369" height="344" alt="Screenshot 2025-08-04 214844" src="https://github.com/user-attachments/assets/3fded015-3519-4e7d-b8e7-268664c8ebcb" />
+
 
 
 
